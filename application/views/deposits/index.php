@@ -32,12 +32,7 @@
 	<label>&nbsp;</label>
 	<label>&nbsp;</label>
 	<label class='wide'><a href='<?php echo base_url(); ?>deposits/create'><img src='<?php echo base_url(); ?>public/images/icons/add.png' /> New Deposit</a></label><br />
-		
-	<label class='wide'>&nbsp;</label>
-	<label>&nbsp;</label>
-	<label>&nbsp;</label>
-	<label class='wide'><a href='<?php echo base_url(); ?>deposits/email'><img src='<?php echo base_url(); ?>public/images/icons/mail.png' /> eMail Page</a></label><br />
-		
+
 	<label class='wide'>&nbsp;</label>
 	<label>&nbsp;</label>
 	<label>&nbsp;</label>

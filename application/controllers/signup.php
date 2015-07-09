@@ -9,7 +9,7 @@ class Signup extends CI_Controller {
 		$data['phoneCarriers']=$this->model_support->get_phoneCarriers();
 		$data['accountType']=$this->model_support->get_accountType();
 		$data['pageTitle']='Signup';
-		$this->template->load('templates/template_private', 'pages/signup', $data);
+		$this->template->load('templates/template_public', 'pages/signup', $data);
 	}
 	
 	public function enter(){
@@ -19,7 +19,7 @@ class Signup extends CI_Controller {
 		$this->template->load('templates/template_private', 'pages/confirm', $data);
 	}
 	
-	public function confirm(){												// [ Confirm Email Address ]
+	public function confirm(){																// [ Confirm Email Address ]
 		$user = $this->uri->segment(3);
 		$url = $this->uri->segment(4);
 		$this->load->model('model_signup');
@@ -31,7 +31,7 @@ class Signup extends CI_Controller {
 		  }
 		else if ($data['signupData'] == '1'){ 
 			$data['pageTitle']='Confirm Account';
-			$this->template->load('templates/template_private', 'messages/accountConfirm', $data);
+			$this->template->load('templates/template_public', 'messages/accountConfirm', $data);
 		 }
 		
 	}
@@ -70,13 +70,18 @@ class Signup extends CI_Controller {
 				'ccType' => $_POST['ccType']
 			);
 
-			$this->model_signup->createCC($ccData);										//put data into database
+			$this->model_signup->createCC($ccData);											//put data into database
 		}
 
-		//fire off confirmation email
+
+		$this->load->model('model_email');
+		//$this->model_email->emailConfirm();													//confirm email
+		$this->model_email->emailSend();													//fire off confirmation email
+
+
 
 		$data['pageTitle']='Signup Completed';
-		$this->template->load('templates/template_private', 'messages/successCreate', $data);
+		$this->template->load('templates/template_public', 'messages/successCreate', $data);
 
 
 

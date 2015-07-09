@@ -1,6 +1,6 @@
 <?php
 
-class Model_xxxxx extends CI_Model{
+class Model_users extends CI_Model{
 
     /*
      *  CRUD Functions
@@ -41,11 +41,16 @@ class Model_xxxxx extends CI_Model{
         return $query->result();
     }
 
+    function getUser($userID){
+        //$query = $this->db->get_where('users', array('id' => $userID));
+        $query = $this->db->get_where('users', array('id' => '1'));
+        return $query->result();
+    }
+
 
     /*
     * Search Functions
     *******************/
-
     function search(){
 
         $search_text = $_POST['search_text'];

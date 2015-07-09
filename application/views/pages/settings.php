@@ -1,6 +1,8 @@
 <fieldset>
 	<legend>Settings</legend>
 
+	<?php foreach($userData as $row){ ?>
+
 		<div class='box'>
 			<div class='boxHeader'>
 				User Information
@@ -8,15 +10,17 @@
 					<img src='<?php echo base_url(); ?>public/images/icons/arrowDown.png' />
 					<input type='submit' value='Edit' />
 				</span><br />
-				
 			</div>
 
 			<div class='boxContent'>
-			<label>Surame</label><br />
-			<label>First Name</label><label>MI</label><label>Last Name</label><br />
-			<label>Suffix</label><br />
+			<label>Surname</label><?php echo $row->surname; ?><br />
+			<label>First Name</label><?php echo $row->firstName; ?><br />
+			<label>Middle Name</label><?php echo $row->middleName; ?><br />
+			<label>Last Name</label><?php echo $row->lastName; ?><br />
+			<label>Suffix</label><?php echo $row->suffix; ?><br />
 			</div>
 		</div><br />
+
 
 		<div class='box'>
 			<div class='boxHeader'>
@@ -28,12 +32,17 @@
 			</div>
 
 			<div class='boxContent'>
-			<label>Address 1</label><label>Address 2</label><label>State</label><label>Zip</label><br />
-			<label>Phone</label><br />
-			<label>eMail</label><br />
-			<label>Phone Number</label><br />
-			<label>Allow eMail</label><br />
-			<label>Allow Text</label><br />
+			<label>Phone Number</label><?php echo $row->phoneNumber; ?><br />
+			<label>Phone Carrier</label><?php echo $row->phoneCarrier; ?><br />
+			<label>eMail Address</label><?php echo $row->email; ?><br />
+			<label>Allow eMail</label><?php
+				if($row->allowEmail == '1'){ echo 'Yes'; }
+				else if($row->allowEmail == '0'){ echo 'No'; }
+				 ?><br />
+			<label>Allow Text</label><?php
+				if($row->allowText == '1'){ echo 'Yes'; }
+				else if($row->allowText == '0'){ echo 'No'; }
+				?><br />
 			</div>
 		</div><br />
 
@@ -48,14 +57,31 @@
 			</div>
 
 			<div class='boxContent'>
-				<label>Type</label>
+				<label>Type</label><?php echo $row->accountType; ?>
 			</div>
 		</div><br />
 
 
+		<div class='box'>
+			<div class='boxHeader'>
+				Bank Accounts
+				<span class='right exp_col'>
+					<img src='<?php echo base_url(); ?>public/images/icons/arrowDown.png' />
+					<input type='submit' value='Edit' />
+				</span><br />
+			</div>
+
+			<div class='boxContent'>
+				<?php foreach($accountData as $row_ba){ ?>
+					<label>Account</label><?php echo $row_ba->accountName; ?><br />
+				<?php } ?>
+			</div>
+
+		</div><br />
+
+
 		<?php
-		$acctType = 'paid';  // [ paid, free]
-		if ($acctType == "paid"){
+		if ($row->accountType == "paid"){							// [ paid, free]
 			echo"
 				<div class='box'>
 					<div class='boxHeader'>
@@ -77,5 +103,7 @@
 			";
 		}
 		?>
+
+	<?php } ?>
 
 </fieldet>

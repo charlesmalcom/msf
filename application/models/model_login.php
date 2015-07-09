@@ -4,15 +4,12 @@ class Model_Login extends CI_Model{
 
     function verifyUser(){
 
+        //verify user against DB
         $query = $this->db->get_where('users', array('username' => $_POST['username'],'password' => $_POST['password']));
         $result = $query->result_array();
-        //$result = $query->result();
-        //print_r($result);
-        //return false;
-        
+
         //put user info a session array
         $this->session->set_userdata($result);
-
 
         if ($result == NULL){ echo 'Your account could not be verified.'; }
             else{

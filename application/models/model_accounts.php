@@ -1,6 +1,6 @@
 <?php
 
-class Model_xxxxx extends CI_Model{
+class Model_accounts extends CI_Model{
 
     /*
      *  CRUD Functions
@@ -37,6 +37,25 @@ class Model_xxxxx extends CI_Model{
     }
 
     function getDetail($xxxxx_id){
+        $query = $this->db->get_where('xxxxx', array('id' => $xxxxx_id));
+        return $query->result();
+    }
+
+
+    /*
+    * Other Functions
+    ******************/
+    function getAccountsbyUser($userID){
+        $query = $this->db->get_where('bankAccounts', array('userID' => $userID));
+        return $query->result();
+    }
+
+    function getCurrentUser(){
+        $query = $this->db->get_where('xxxxx', array('show' => 'Yes'));
+        return $query->result();
+    }
+
+    function getDetailUser($xxxxx_id){
         $query = $this->db->get_where('xxxxx', array('id' => $xxxxx_id));
         return $query->result();
     }
